@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laser-Online</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Laser-Online</div>
+        <div class="nav-links">
+            <a onclick="scrollToSection('home')">Home</a>
+            <a onclick="openModal('aboutModal')">About</a>
+            <a onclick="openModal('serviceModal')">Contact</a>
+            <a onclick="scrollToSection('track')">Track Order</a>
+        </div>
+    </div>
+
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('aboutModal')">×</span>
+            <h2>About Us</h2>
+            <p>At Laser-Online, we redefine precision with cutting-edge CNC technology. Our state-of-the-art laser
+                cutting and machining services are designed to bring your ideas to life with unparalleled accuracy and
+                speed. Whether you're a small business, an innovator, or an industry leader, we specialize in delivering
+                high-quality, custom CNC solutions tailored to your unique needs. From intricate designs to large-scale
+                production, our team of experts ensures every project is completed with precision, efficiency, and a
+                commitment to excellence. Trust Laser-Online to be your partner in innovation—upload your CNC model
+                today and experience the future of manufacturing!</p>
+        </div>
+    </div>
+
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('serviceModal')">×</span>
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <p>Telegram ID: <a href="https://t.me/Laser_Online" target="_blank">@Laser_Online</a></p>
+                <p>Instagram ID: <a href="https://instagram.com/Laser_Online" target="_blank">@Laser_Online</a></p>
+                <p>WhatsApp Number: <a href="https://wa.me/09999999999" target="_blank">09999999999</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="materialModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('materialModal')">×</span>
+            <h2>Select Material</h2>
+            <select id="materialSelect">
+                <option value="" disabled selected>Select a material</option>
+            </select>
+            <button class="neon-btn" onclick="confirmMaterial()">Confirm Material</button>
+        </div>
+    </div>
+
+    <div id="thicknessModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('thicknessModal')">×</span>
+            <h2>Select Thickness</h2>
+            <select id="thicknessSelect">
+                <option value="" disabled selected>Select thickness (mm)</option>
+            </select>
+            <button class="neon-btn" onclick="confirmThickness()">Confirm Thickness</button>
+        </div>
+    </div>
+
+    <div id="home" class="section">
+        <h1>Welcome to Laser-Online</h1>
+        <p>Experience precision CNC services with Laser-Online. Upload your CNC model and get your order ready swiftly!</p>
+        <button class="neon-btn" onclick="scrollToSection('details')">Order Now!</button>
+    </div>
+
+    <div id="details" class="section">
+        <div class="form-container">
+            <h2>Enter Your Details</h2>
+            <form id="orderForm" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" name="full_name" placeholder="Enter your full name">
+                <label for="mobile">Mobile Phone</label>
+                <input type="text" id="mobile" name="mobile" placeholder="09xxxxxxxxx" maxlength="11">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address">
+                <button class="neon-btn" type="button" onclick="validateAndScroll()">Next</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="upload" class="section">
+        <div class="upload-container">
+            <h2>Upload Your CNC Model</h2>
+            <div class="upload-box" id="uploadBox">
+                <i>↑</i>
+                <p>Drag & Drop your file here or</p>
+                <input type="file" id="fileInput" name="cnc_file" style="display: none;"
+                    accept=".nc,.gcode,.cnc,.dxf,.stl,.step,.stp,.svg">
+                <button class="neon-btn upload-btn" id="uploadBtn" style="margin-top: 20px;"
+                    onclick="handleUploadButtonClick()">Choose File</button>
+                <p id="fileName" style="margin-top: 10px; color: #ccc;"></p>
+            </div>
+            <button class="neon-btn" onclick="validateUploadAndScroll()">Submit Model</button>
+        </div>
+    </div>
+
+    <div id="material-selection" class="section">
+        <div class="material-container">
+            <h2>Material Selection</h2>
+            <div class="material-buttons">
+                <button class="neon-btn" onclick="openMaterialModal('metal')">Metal CNC Cut</button>
+                <button class="neon-btn" onclick="openMaterialModal('plexiglass')">Plexiglass CNC Cut</button>
+            </div>
+            <div class="summary" id="materialSummary">Please select a material and thickness.</div>
+            <input type="hidden" id="materialInput" name="material" form="orderForm">
+            <input type="hidden" id="thicknessInput" name="thickness" form="orderForm">
+            <button class="neon-btn" id="confirmMaterialBtn" onclick="submitOrderForm()" disabled>Submit Order</button>
+        </div>
+    </div>
+
+    <div id="track" class="section">
+        <div class="form-container">
+            <h2>Track Your Order</h2>
+            <label for="track-receipt-code">Receipt Code</label>
+            <input type="text" id="track-receipt-code" placeholder="Enter your 8-digit Receipt Code">
+            <button class="neon-btn" onclick="trackOrder()">Track</button>
+            <div id="track-result" style="margin-top: 20px; color: #00FF99;"></div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
