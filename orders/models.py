@@ -13,10 +13,10 @@ class Order(models.Model):
     cancelled = "CL"
 
     ORDER_STATUS = (
-        (pend_of_admin, "در انتظار ادمین"),
-        (pend_of_payment, "در انتظار پرداخت"),
-        (accepted, "تایید شده"),
-        (cancelled, "لغو شده")
+        (pend_of_admin, "Pending of admin"),
+        (pend_of_payment, "Pending of payment"),
+        (accepted, "Accepted"),
+        (cancelled, "Cancelled")
     )
 
     full_name = models.CharField(max_length=100)

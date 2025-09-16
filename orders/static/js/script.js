@@ -340,6 +340,6 @@ function trackOrder() {
       document.getElementById('track-result').textContent = 'Please enter a valid 8-digit Receipt Code.';
       return;
     }
-    const baseUrl = "{% url 'track_order' 'PLACEHOLDER' %}".replace("PLACEHOLDER", receiptCode);
+    const baseUrl = `track/${receiptCode}/`;
     window.location.href = baseUrl;
 }

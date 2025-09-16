@@ -18,6 +18,10 @@ body {
     min-height: 100vh;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -103,7 +107,7 @@ body {
     padding: 40px;
     border-radius: 10px;
     width: 100%;
-    max-width: 500px;
+    max-width: 65vw;
     text-align: left;
 }
 
@@ -298,20 +302,43 @@ body {
 }
 
 .receipt-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: first;
+    align-items: stretch;
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     background-color: rgba(45, 45, 45, 0.7);
     border-radius: 5px;
     overflow: hidden;
+    padding: 15px;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.content-card {
+    flex: 1;
+    padding: 10px;
+}
+
+.card-item {
+    padding: 5px 8px;
+    border-radius: 3px;
+    text-align: left;
+    border-bottom: 1px solid #00FF99;
+    font-size: 18px;
 }
 
 .receipt-table th,
 .receipt-table td {
     padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #00FF99;
-    font-size: 18px;
 }
 
 .receipt-table th {
@@ -336,6 +363,12 @@ body {
 .rslt {
     border-style: solid;
     border-color: #65897a;
+    padding: 5px 6px;
+    background-color: #00FF99;
+    color: #0A0F1A;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
 }
 
 @keyframes pulseGlow {
@@ -463,4 +496,8 @@ body {
 .order-grid > div {
   padding: 6px 10px;
   border-bottom: 1px solid #444;
+}
+
+.card-container {
+
 }

@@ -41,7 +41,42 @@
     <div id="track" class="section">
         <div class="form-container">
             <h2>Order Tracking</h2>
-            <table class="receipt-table">
+            <div class="receipt-table">
+                <h3 class="rslt">
+                    Order Details
+                </h3>
+                <div class="card-container">
+                    <ul class="content-card">
+                        <li class="card-item">Selected file : {{ order.cnc_file.name|cut:"cnc_files/" }}</li>
+                        <li class="card-item">Material : {{ order.material }}</li>
+                        <li class="card-item">Thickness : {{ order.thickness }}</li>
+                    </ul>
+                    <ul class="content-card">
+                        <li class="card-item">Name : {{ order.full_name }}</li>
+                        <li class="card-item">Mobile : {{ order.mobile }}</li>
+                        <li class="card-item">Email : {{ order.email }}</li>
+                        <li class="card-item">Address : {{ order.address }}</li>
+                    </ul>
+                </div>
+                <ul class="content-card">
+                    <li class="card-item">Status : {{ order.status }}</li>
+                    <li class="card-item">Cost : 
+                        {% if order.cost %}
+                            {{ order.cost }} IRR
+                        {% else %}
+                            Not quoted yet
+                        {% endif %}
+                    </li>
+                    <li class="card-item">Estimated time : 
+                        {% if order.estimated_time %}
+                            {{ order.estimated_time }}
+                        {% else %}
+                            Not quoted yet
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+            <!-- <table class="receipt-table">
                 <thead>
                     <tr class="rslt">
                         <th colspan="2">Order Details</th>
@@ -98,7 +133,7 @@
                         <td></td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
         </div>
     </div>
 
