@@ -2,7 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from .forms import OrderForm
 from .models import Order
-import json
+from laser_online_backend.settings import ADMIN_EMAIL
+
+from utils.email import send_email
+
 
 def index(request):
     return render(request, 'orders/index.html')
@@ -12,6 +15,7 @@ def submit_order(request):
         form = OrderForm(request.POST, request.FILES)
         if form.is_valid():
             order = form.save()
+            send_email(ADMIN_EMAIL, "admin_alert", order)
             return JsonResponse({
                 'success': True,
                 'order_id': order.id,

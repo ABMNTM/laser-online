@@ -1,7 +1,7 @@
 💳 Customer Payment Update
 
-Order Receipt Code: {{ receipt_code }}
-Customer: {{ full_name }} ({{ email }})
+Order Receipt Code: {{ order.receipt_code }}
+Customer: {{ order.full_name }} ({{ order.email }})
 
 Payment Status: {{ payment_status }}
 

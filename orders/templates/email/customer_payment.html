@@ -6,11 +6,11 @@
 </head>
 <body style="font-family: Arial, sans-serif; color: #333;">
     <h2>Payment Required</h2>
-    <p>Dear {{ full_name }},</p>
+    <p>Dear {{ order.full_name }},</p>
     <p>
-        Your order <strong>{{ receipt_code }}</strong> has been reviewed.<br>
-        The total cost is <strong>{{ cost }} تومان</strong>.<br>
-        Estimated delivery time: <strong>{{ estimated_time }}</strong>.
+        Your order <strong>{{ order.receipt_code }}</strong> has been reviewed.<br>
+        The total cost is <strong>{{ order.cost }} تومان</strong>.<br>
+        Estimated delivery time: <strong>{{ order.estimated_time }}</strong>.
     </p>
     <p>Please click the button below to proceed with the payment:</p>
     <p>

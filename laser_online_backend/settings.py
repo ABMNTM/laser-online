@@ -103,6 +103,8 @@ EMAIL_USE_TLS = eval(os.environ.get("EMAIL_USE_TLS", "True"))
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
 
+ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL")
+
 # Zarinpal
 ZARINPAL_MERCHANT_ID = os.environ.get("ZARINPAL_MERCHANT_ID", "")
 ZARINPAL_SANDBOX = eval(os.environ.get("ZARINPAL_SANDBOX", "True"))

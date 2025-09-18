@@ -1,170 +1,122 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Track Order - Laser-Online</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
     <div class="navbar">
-        <div class="logo">Laser-Online</div>
-        <div class="nav-links">
-            <a onclick="scrollToSection('home')">Home</a>
-            <a onclick="openModal('aboutModal')">About</a>
-            <a onclick="openModal('serviceModal')">Contact</a>
-            <a href="{% url 'index' %}">Back to Order</a>
-        </div>
+      <div class="logo">Laser-Online</div>
+      <div class="nav-links">
+        <a onclick="scrollToSection('home')">Home</a>
+        <a onclick="openModal('aboutModal')">About</a>
+        <a onclick="openModal('serviceModal')">Contact</a>
+        <a href="{% url 'index' %}">Back to Order</a>
+      </div>
     </div>
 
     <div id="aboutModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('aboutModal')">×</span>
-            <h2>About Us</h2>
-            <p>At Laser-Online, we redefine precision with cutting-edge CNC technology...</p>
-        </div>
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('aboutModal')">×</span>
+        <h2>About Us</h2>
+        <p>
+          At Laser-Online, we redefine precision with cutting-edge CNC
+          technology...
+        </p>
+      </div>
     </div>
 
     <div id="serviceModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('serviceModal')">×</span>
-            <h2>Contact Us</h2>
-            <div class="contact-info">
-                <p>Telegram ID: <a href="https://t.me/Laser_Online" target="_blank">@Laser_Online</a></p>
-                <p>Instagram ID: <a href="https://instagram.com/Laser_Online" target="_blank">@Laser_Online</a></p>
-                <p>WhatsApp Number: <a href="https://wa.me/09999999999" target="_blank">09999999999</a></p>
-            </div>
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('serviceModal')">×</span>
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+          <p>
+            Telegram ID:
+            <a href="https://t.me/Laser_Online" target="_blank"
+              >@Laser_Online</a
+            >
+          </p>
+          <p>
+            Instagram ID:
+            <a href="https://instagram.com/Laser_Online" target="_blank"
+              >@Laser_Online</a
+            >
+          </p>
+          <p>
+            WhatsApp Number:
+            <a href="https://wa.me/09999999999" target="_blank">09999999999</a>
+          </p>
         </div>
+      </div>
     </div>
 
     <div id="track" class="section">
-        <div class="form-container">
-            <h2>Order Tracking</h2>
-            <div class="receipt-table">
-                <h3 class="rslt">
-                    Order Details
-                </h3>
-                <div class="card-container">
-                    <ul class="content-card">
-                        <li class="card-item">Selected file : {{ order.cnc_file.name|cut:"cnc_files/" }}</li>
-                        <li class="card-item">Material : {{ order.material }}</li>
-                        <li class="card-item">Thickness : {{ order.thickness }}</li>
-                    </ul>
-                    <ul class="content-card">
-                        <li class="card-item">Name : {{ order.full_name }}</li>
-                        <li class="card-item">Mobile : {{ order.mobile }}</li>
-                        <li class="card-item">Email : {{ order.email }}</li>
-                        <li class="card-item">Address : {{ order.address }}</li>
-                    </ul>
-                </div>
-                <ul class="content-card">
-                    <li class="card-item">Status : {{ order.status }}</li>
-                    <li class="card-item">Cost : 
-                        {% if order.cost %}
-                            {{ order.cost }} IRR
-                        {% else %}
-                            Not quoted yet
-                        {% endif %}
-                    </li>
-                    <li class="card-item">Estimated time : 
-                        {% if order.estimated_time %}
-                            {{ order.estimated_time }}
-                        {% else %}
-                            Not quoted yet
-                        {% endif %}
-                    </li>
-                </ul>
-            </div>
-            <!-- <table class="receipt-table">
-                <thead>
-                    <tr class="rslt">
-                        <th colspan="2">Order Details</th>
-                        <th colspan="2"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="highlight-row">
-                        <td>Receipt Code</td>
-                        <td>{{ order.receipt_code }}</td>
-                        <td>Material</td>
-                        <td>{{ order.material }}</td>
-                    </tr>
-                    <tr>
-                        <td>Full Name</td>
-                        <td>{{ order.full_name }}</td>
-                        <td>Thickness</td>
-                        <td>{{ order.thickness }} mm</td>
-                    </tr>
-                    <tr>
-                        <td>Mobile Phone</td>
-                        <td>{{ order.mobile }}</td>
-                        <td>Status</td>
-                        <td>{{ order.status }}</td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>{{ order.email }}</td>
-                        <td>Cost</td>
-                        <td>
-                            {% if order.cost %}
-                                {{ order.cost }} IRR
-                            {% else %}
-                                Not quoted yet
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Address</td>
-                        <td>{{ order.address }}</td>
-                        <td>Estimated Time</td>
-                        <td>
-                            {% if order.estimated_time %}
-                                {{ order.estimated_time }}
-                            {% else %}
-                                Not quoted yet
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Selected File</td>
-                        <td>{{ order.cnc_file.name|cut:"cnc_files/" }}</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table> -->
+      <div class="form-container">
+        <h2>Order Tracking</h2>
+        <div class="receipt-table">
+          <h3 class="rslt">Order Details</h3>
+          <div class="card-container">
+            <ul class="content-card">
+              <li class="card-item">
+                Selected file : {{ order.cnc_file.name|cut:"cnc_files/" }}
+              </li>
+              <li class="card-item">Material : {{ order.material }}</li>
+              <li class="card-item">Thickness : {{ order.thickness }}</li>
+            </ul>
+            <ul class="content-card">
+              <li class="card-item">Name : {{ order.full_name }}</li>
+              <li class="card-item">Mobile : {{ order.mobile }}</li>
+              <li class="card-item">Email : {{ order.email }}</li>
+              <li class="card-item">Address : {{ order.address }}</li>
+            </ul>
+          </div>
+          <ul class="content-card">
+            <li class="card-item">Status : {{ order.status }}</li>
+            <li class="card-item">
+              Cost : {% if order.cost %} {{ order.cost }} IRR {% else %} Not
+              quoted yet {% endif %}
+            </li>
+            <li class="card-item">
+              Estimated time : {% if order.estimated_time %} {{
+              order.estimated_time }} {% else %} Not quoted yet {% endif %}
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
 
     <script>
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
+      function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        section.scrollIntoView({ behavior: "smooth" });
+      }
 
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
 
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
 
-        window.onclick = function (event) {
-            const aboutModal = document.getElementById('aboutModal');
-            const serviceModal = document.getElementById('serviceModal');
-            if (event.target === aboutModal) {
-                closeModal('aboutModal');
-            }
-            if (event.target === serviceModal) {
-                closeModal('serviceModal');
-            }
-        };
+      window.onclick = function (event) {
+        const aboutModal = document.getElementById("aboutModal");
+        const serviceModal = document.getElementById("serviceModal");
+        if (event.target === aboutModal) {
+          closeModal("aboutModal");
+        }
+        if (event.target === serviceModal) {
+          closeModal("serviceModal");
+        }
+      };
     </script>
-</body>
+  </body>
 </html>
