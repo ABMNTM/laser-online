@@ -1,0 +1,9 @@
+💳 Payment Status
+
+Dear {{ full_name }},
+
+Your payment for order {{ receipt_code }} has been processed.
+
+Status: {{ payment_status }}
+
+Thank you for your trust.

@@ -304,8 +304,8 @@ ul {
 .receipt-table {
     display: flex;
     flex-direction: column;
-    justify-content: first;
-    align-items: stretch;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -318,7 +318,7 @@ ul {
 .card-container {
     display: flex;
     flex-direction: row;
-    justify-content: stretch;
+    justify-content: center;
     align-items: center;
     margin: 5px 0;
 }
@@ -326,6 +326,7 @@ ul {
 .content-card {
     flex: 1;
     padding: 10px;
+    min-width: 50%;
 }
 
 .card-item {
@@ -334,6 +335,7 @@ ul {
     text-align: left;
     border-bottom: 1px solid #00FF99;
     font-size: 18px;
+    margin: 6px 0;
 }
 
 .receipt-table th,
@@ -496,8 +498,4 @@ ul {
 .order-grid > div {
   padding: 6px 10px;
   border-bottom: 1px solid #444;
-}
-
-.card-container {
-
 }

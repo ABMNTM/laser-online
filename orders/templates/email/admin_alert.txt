@@ -1,0 +1,16 @@
+📢 New Order Alert
+
+A new order has been placed by {{ full_name }}.
+
+Details:
+- Receipt Code: {{ receipt_code }}
+- Name: {{ full_name }}
+- Mobile: {{ mobile }}
+- Email: {{ email }}
+- Address: {{ address }}
+- Material: {{ material }}
+- Thickness: {{ thickness }}
+- CNC File: {{ cnc_file.url }}
+- Created At: {{ created_at }}
+
+Please review this order in the admin panel.

@@ -1,0 +1,8 @@
+💳 Customer Payment Update
+
+Order Receipt Code: {{ receipt_code }}
+Customer: {{ full_name }} ({{ email }})
+
+Payment Status: {{ payment_status }}
+
+Please review this transaction in the admin panel.
