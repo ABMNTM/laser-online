@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Order - Laser-Online</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">Laser-Online</div>
+      <div class="nav-links">
+        <a onclick="openModal('aboutModal')">About</a>
+        <a onclick="openModal('serviceModal')">Contact</a>
+        <a href="{% url 'index' %}">Back to Order</a>
+      </div>
+    </div>
+
+    <div id="aboutModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('aboutModal')">×</span>
+        <h2>About Us</h2>
+        <p>
+          At Laser-Online, we redefine precision with cutting-edge CNC
+          technology...
+        </p>
+      </div>
+    </div>
+
+    <div id="serviceModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('serviceModal')">×</span>
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+          <p>
+            Telegram ID:
+            <a href="https://t.me/Laser_Online" target="_blank"
+              >@Laser_Online</a
+            >
+          </p>
+          <p>
+            Instagram ID:
+            <a href="https://instagram.com/Laser_Online" target="_blank"
+              >@Laser_Online</a
+            >
+          </p>
+          <p>
+            WhatsApp Number:
+            <a href="https://wa.me/09999999999" target="_blank">09999999999</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+        <div class="payment-status">
+            {% if payment_success %}
+                پرداخت شما با موفقیت انجام شد ✅
+            {% else %}
+                متاسفانه پرداخت انجام نشد ❌
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+      function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      window.onclick = function (event) {
+        const aboutModal = document.getElementById("aboutModal");
+        const serviceModal = document.getElementById("serviceModal");
+        if (event.target === aboutModal) {
+          closeModal("aboutModal");
+        }
+        if (event.target === serviceModal) {
+          closeModal("serviceModal");
+        }
+      };
+    </script>
+  </body>
+</html>

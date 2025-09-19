@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
-from .forms import OrderForm
-from .models import Order
+from orders.forms import OrderForm
+from orders.models import Order
 from laser_online_backend.settings import ADMIN_EMAIL
 
 from utils.email import send_email
@@ -32,3 +32,7 @@ def submit_order(request):
 def track_order(request, receipt_code):
     order = get_object_or_404(Order, receipt_code=receipt_code)
     return render(request, 'orders/track.html', {'order': order})
+
+def verify(request):
+    success = request.GET.get("success")
+    return render(request, "orders/verify.html", {"payment_success": success})

@@ -1,8 +1,9 @@
 from django.urls import path
-from orders import views
+from orders.views import orders, payment
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('submit_order/', views.submit_order, name='submit_order'),
-    path('track/<str:receipt_code>/', views.track_order, name='track_order'),
+    path('', orders.index, name='index'),
+    path('submit_order/', orders.submit_order, name='submit_order'),
+    path('track/<str:receipt_code>/', orders.track_order, name='track_order'),
+    path('verify/', orders.verify, name='verify')
 ]
